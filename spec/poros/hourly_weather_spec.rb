@@ -1,8 +1,8 @@
 RSpec.describe HourlyWeather do
   it 'exists and has attributes' do
     hour_info = {
-      temp: 297.79,
-      dt: 1600704000
+      dt: 1600704000,
+      temp: 297.79
     }
 
     hourly = HourlyWeather.new(hour_info)
