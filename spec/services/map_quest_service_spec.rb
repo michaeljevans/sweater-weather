@@ -1,5 +1,5 @@
 RSpec.describe MapQuestService do
-  scenario 'returns location information' do
+  it 'returns location information' do
     VCR.use_cassette('map_quest_denver_co', re_record_interval: 7.days) do
       location = 'denver,co'
 

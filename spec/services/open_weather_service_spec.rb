@@ -1,5 +1,5 @@
 RSpec.describe OpenWeatherService do
-  scenario 'returns current, hourly, and daily weather information' do
+  it 'returns current, hourly, and daily weather information' do
     VCR.use_cassette('open_weather_denver_co', re_record_interval: 7.days) do
       latitude  = 39.738453
       longitude = -104.984853
