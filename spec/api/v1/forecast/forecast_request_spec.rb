@@ -1,5 +1,5 @@
 RSpec.describe 'Forecast API' do
-  scenario 'returns current, hourly, and daily weather info for a given city' do
+  xit 'returns current, hourly, and daily weather info for a given city' do
     VCR.use_cassette('forecast_denver_co', re_record_interval: 7.days) do
       location = 'denver,co'
 
