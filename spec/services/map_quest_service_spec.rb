@@ -1,10 +1,8 @@
 RSpec.describe MapQuestService do
   scenario 'returns location information' do
     VCR.use_cassette('map_quest_denver_co', re_record_interval: 7.days) do
-      service = MapQuestService.new
-
       location = 'denver, co'
-
+      service = MapQuestService.new
       location_info = service.get_location_information(location)
 
       expect(location_info.class).to eq(Hash)
