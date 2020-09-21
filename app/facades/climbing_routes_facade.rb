@@ -20,10 +20,7 @@ class ClimbingRoutesFacade
 
   def nearby_climbing_routes
     response = MountainProjectService.get_nearby_routes(@location.latitude, @location.longitude)
+    search_location = "#{@location.latitude},#{@location.longitude}"
     response[:routes].map { |route_info| ClimbingRoute.new(route_info, search_location) }
-  end
-
-  def search_location
-    "#{@location.latitude},#{@location.longitude}"
   end
 end
