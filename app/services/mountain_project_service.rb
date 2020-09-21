@@ -7,7 +7,8 @@ class MountainProjectService
       key: ENV['MOUNTAIN_PROJECT_API_KEY'],
       lat: latitude,
       lon: longitude,
-      maxDistance: 50
+      maxDistance: 25,
+      maxResults: 10
     }
 
     response = Faraday.get("#{domain}#{uri}") do |req|
