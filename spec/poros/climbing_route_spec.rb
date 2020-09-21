@@ -22,6 +22,6 @@ RSpec.describe ClimbingRoute do
     expect(route.type).to eq('Trad')
     expect(route.rating).to eq('5.9')
     expect(route.location).to eq(route_info[:location])
-    expect(route.distance_to_route).to eq(14.837)
+    expect(route.distance_to_route).to eq(14.361)
   end
 end
