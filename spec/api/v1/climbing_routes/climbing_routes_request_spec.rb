@@ -20,16 +20,15 @@ RSpec.describe 'Climbing Routes API' do
       expect(routes[:data][:attributes][:forecast]).to have_key(:summary)
       expect(routes[:data][:attributes][:forecast]).to have_key(:temperature)
       expect(routes[:data][:attributes]).to have_key(:routes)
-      expect(routes[:data][:attributes][:routes]).to have_key(:name)
-      expect(routes[:data][:attributes][:routes]).to have_key(:type)
-      expect(routes[:data][:attributes][:routes]).to have_key(:rating)
-      expect(routes[:data][:attributes][:routes]).to have_key(:location)
-      expect(routes[:data][:attributes][:routes][:location]).to be_an(Array)
-      expect(routes[:data][:attributes][:routes][:location].length).to eq(4)
-      routes[:data][:attributes][:routes][:location].each do |element|
+      expect(routes[:data][:attributes][:routes].first).to have_key(:name)
+      expect(routes[:data][:attributes][:routes].first).to have_key(:type)
+      expect(routes[:data][:attributes][:routes].first).to have_key(:rating)
+      expect(routes[:data][:attributes][:routes].first).to have_key(:location)
+      expect(routes[:data][:attributes][:routes].first[:location]).to be_an(Array)
+      routes[:data][:attributes][:routes].first[:location].each do |element|
         expect(element).to be_a(String)
       end
-      expect(routes[:data][:attributes][:routes]).to have_key(:distance_to_route)
+      expect(routes[:data][:attributes][:routes].first).to have_key(:distance_to_route)
     end
   end
 end
