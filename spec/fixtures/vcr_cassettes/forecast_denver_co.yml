@@ -2,6 +2,64 @@
 http_interactions:
 - request:
     method: get
+    uri: http://www.mapquestapi.com/geocoding/v1/address?key=<MAPQUEST_API_KEY>&location=denver,co
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 21 Sep 2020 05:48:55 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1734'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,POST
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, must-revalidate
+      Expires:
+      - Mon, 20 Dec 1998 01:00:00 GMT
+      Geocodetransactioncount:
+      - '1'
+      Last-Modified:
+      - Mon, 21 Sep 2020 05:48:55 GMT
+      Pragma:
+      - no-cache
+      Reversegeocodetransactioncount:
+      - '0'
+      Server:
+      - Apache-Coyote/1.1
+      Set-Cookie:
+      - JSESSIONID=8B7FF6E0A537A4F678C13E898728ACB9; Path=/; HttpOnly
+      Status:
+      - success
+      Transactionweight:
+      - '1.0'
+    body:
+      encoding: UTF-8
+      string: '{"info":{"statuscode":0,"copyright":{"text":"\u00A9 2020 MapQuest,
+        Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9
+        2020 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"denver,co"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Denver","adminArea5Type":"City","adminArea4":"Denver
+        County","adminArea4Type":"County","adminArea3":"CO","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282041090","unknownInput":"","type":"s","latLng":{"lat":39.738453,"lng":-104.984853},"displayLatLng":{"lat":39.738453,"lng":-104.984853},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=<MAPQUEST_API_KEY>&type=map&size=225,160&locations=39.738453,-104.984853|marker-sm-50318A-1&scalebar=true&zoom=12&rand=-1404492949"},{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"","adminArea5Type":"City","adminArea4":"Denver
+        County","adminArea4Type":"County","adminArea3":"CO","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A4XAX","geocodeQuality":"COUNTY","dragPoint":false,"sideOfStreet":"N","linkId":"282932003","unknownInput":"","type":"s","latLng":{"lat":39.738453,"lng":-104.984853},"displayLatLng":{"lat":39.738453,"lng":-104.984853},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=<MAPQUEST_API_KEY>&type=map&size=225,160&locations=39.738453,-104.984853|marker-sm-50318A-2&scalebar=true&zoom=9&rand=516038318"}]}]}'
+  recorded_at: Mon, 21 Sep 2020 05:48:55 GMT
+- request:
+    method: get
     uri: https://api.openweathermap.org/data/2.5/onecall?appid=<OPEN_WEATHER_API_KEY>&exclude=minutely&lat=39.738453&lon=-104.984853
     body:
       encoding: US-ASCII

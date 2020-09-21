@@ -1,12 +1,10 @@
 RSpec.describe OpenWeatherService do
-  scenario 'returns current, hourly, and daily weather information' do
+  it 'returns current, hourly, and daily weather information' do
     VCR.use_cassette('open_weather_denver_co', re_record_interval: 7.days) do
-      service = OpenWeatherService.new
-
       latitude  = 39.738453
       longitude = -104.984853
 
-      forecast = service.get_forecast_information(latitude, longitude)
+      forecast = OpenWeatherService.get_forecast_information(latitude, longitude)
 
       expect(forecast.class).to eq(Hash)
       expect(forecast).to have_key(:lat)
