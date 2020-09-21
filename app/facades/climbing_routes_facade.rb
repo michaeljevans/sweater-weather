@@ -1,5 +1,6 @@
 class ClimbingRoutesFacade
-  attr_reader :location
+  attr_reader :location, :forecast, :routes
+
   def initialize(location)
     @location = location_info(location)
     @forecast = climbing_forecast
@@ -13,17 +14,12 @@ class ClimbingRoutesFacade
   end
 
   def climbing_forecast
-    current_weather = forecast[:current]
-    ClimbingForecast.new(current_weather)
+    weather = OpenWeatherService.get_forecast_information(@location.latitude, @location.longitude)
+    ClimbingForecast.new(weather[:current])
   end
 
   def nearby_climbing_routes
-    
-  end
-
-  private
-
-  def forecast
-    @forecast ||= OpenWeatherService.get_forecast_information(@location.latitude, @location.longitude)
+    response = MountainProjectService.get_nearby_routes(@location.latitude, @location.longitude)
+    response[:routes].map { |route_info| ClimbingRoute.new(route_info) }
   end
 end
