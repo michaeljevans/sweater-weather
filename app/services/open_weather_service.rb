@@ -1,6 +1,7 @@
 class OpenWeatherService
+  include Serviceable
+
   def self.get_forecast_information(latitude, longitude)
-    domain = 'https://api.openweathermap.org'
     uri    = '/data/2.5/onecall'
 
     params = {
@@ -10,11 +11,6 @@ class OpenWeatherService
       exclude: 'minutely'
     }
 
-    response = Faraday.get("#{domain}#{uri}") do |req|
-      req.headers['Content-Type'] = 'application/json'
-      req.params                  = params
-    end
-
-    JSON.parse(response.body, symbolize_names: true)
+    get_and_parse(open_weather_domain, uri, params)
   end
 end

@@ -1,6 +1,7 @@
 class MountainProjectService
+  include Serviceable
+
   def self.get_nearby_routes(latitude, longitude)
-    domain = 'https://www.mountainproject.com'
     uri    = '/data/get-routes-for-lat-lon'
 
     params = {
@@ -11,11 +12,6 @@ class MountainProjectService
       maxResults: 10
     }
 
-    response = Faraday.get("#{domain}#{uri}") do |req|
-      req.headers['Content-Type'] = 'application/json'
-      req.params                  = params
-    end
-
-    JSON.parse(response.body, symbolize_names: true)
+    get_and_parse(mountain_project_domain, uri, params)
   end
 end
