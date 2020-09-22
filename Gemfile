@@ -25,6 +25,7 @@ group :test do
   gem 'webmock'
   gem 'simplecov'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
