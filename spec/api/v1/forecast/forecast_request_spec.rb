@@ -8,7 +8,7 @@ RSpec.describe 'Forecast API' do
       expect(response).to be_successful
       expect(response.content_type).to eq('application/json')
 
-      forecast = JSON.parse(response.body, symbolize_names: true)
+      forecast = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(forecast[:forecast].class).to eq(Hash)
       expect(forecast[:forecast]).to have_key(:location)
