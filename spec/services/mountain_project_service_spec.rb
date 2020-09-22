@@ -4,7 +4,7 @@ RSpec.describe MountainProjectService do
       latitude = 39.749672
       longitude = -105.216019
 
-      routes = MountainProjectService.get_nearby_routes(latitude, longitude)
+      routes = MountainProjectService.new.get_nearby_routes(latitude, longitude)
 
       expect(routes.class).to eq(Hash)
       expect(routes).to have_key(:routes)

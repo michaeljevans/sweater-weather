@@ -4,7 +4,7 @@ RSpec.describe OpenWeatherService do
       latitude  = 39.738453
       longitude = -104.984853
 
-      forecast = OpenWeatherService.get_forecast_information(latitude, longitude)
+      forecast = OpenWeatherService.new.get_forecast_information(latitude, longitude)
 
       expect(forecast.class).to eq(Hash)
       expect(forecast).to have_key(:lat)

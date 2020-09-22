@@ -1,7 +1,9 @@
+require_relative 'serviceable'
+
 class MapQuestService
   include Serviceable
 
-  def self.get_location_information(location)
+  def get_location_information(location)
     uri    = '/geocoding/v1/address'
 
     params = {
@@ -12,7 +14,7 @@ class MapQuestService
     get_and_parse(map_quest_domain, uri, params)
   end
 
-  def self.get_distance_between(location_1, location_2)
+  def get_distance_between(location_1, location_2)
     uri    = '/directions/v2/route'
 
     params = {

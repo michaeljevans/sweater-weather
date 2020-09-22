@@ -2,25 +2,33 @@ class ClimbingRoutesFacade
   attr_reader :location, :forecast, :routes
 
   def initialize(location)
-    @location = location_info(location)
+    @location = location
     @forecast = climbing_forecast
     @routes   = nearby_climbing_routes
   end
 
-  def location_info(location)
-    response = MapQuestService.get_location_information(location)
-    info = response[:results].first[:locations].first
-    Location.new(info)
-  end
-
   def climbing_forecast
-    weather = OpenWeatherService.get_forecast_information(@location.latitude, @location.longitude)
+    weather = OpenWeatherService.new.get_forecast_information(latitude, longitude)
     ClimbingForecast.new(weather[:current])
   end
 
   def nearby_climbing_routes
-    response = MountainProjectService.get_nearby_routes(@location.latitude, @location.longitude)
-    search_location = "#{@location.latitude},#{@location.longitude}"
-    response[:routes].map { |route_info| ClimbingRoute.new(route_info, search_location) }
+    nearby = MountainProjectService.new.get_nearby_routes(latitude, longitude)
+    search_coords = "#{latitude},#{longitude}"
+    nearby[:routes].map { |route_info| ClimbingRoute.new(route_info, search_coords) }
+  end
+
+  private
+
+  def location_info
+    @location_info ||= MapQuestService.new.get_location_information(@location)
+  end
+
+  def latitude
+    location_info[:results].first[:locations].first[:latLng][:lat]
+  end
+
+  def longitude
+    location_info[:results].first[:locations].first[:latLng][:lng]
   end
 end

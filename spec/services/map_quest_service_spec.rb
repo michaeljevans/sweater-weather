@@ -3,7 +3,7 @@ RSpec.describe MapQuestService do
     VCR.use_cassette('map_quest_denver_co', re_record_interval: 7.days) do
       location = 'denver,co'
 
-      location_info = MapQuestService.get_location_information(location)
+      location_info = MapQuestService.new.get_location_information(location)
 
       expect(location_info.class).to eq(Hash)
       expect(location_info).to have_key(:results)

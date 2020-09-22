@@ -1,7 +1,9 @@
+require_relative 'serviceable'
+
 class MountainProjectService
   include Serviceable
 
-  def self.get_nearby_routes(latitude, longitude)
+  def get_nearby_routes(latitude, longitude)
     uri    = '/data/get-routes-for-lat-lon'
 
     params = {

@@ -9,7 +9,7 @@ class ForecastFacade
   end
 
   def location_info(location)
-    response = MapQuestService.get_location_information(location)
+    response = MapQuestService.new.get_location_information(location)
     info = response[:results].first[:locations].first
     Location.new(info)
   end
@@ -29,6 +29,6 @@ class ForecastFacade
   private
 
   def forecast
-    @forecast ||= OpenWeatherService.get_forecast_information(@location.latitude, @location.longitude)
+    @forecast ||= OpenWeatherService.new.get_forecast_information(@location.latitude, @location.longitude)
   end
 end

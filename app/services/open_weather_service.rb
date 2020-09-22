@@ -1,7 +1,9 @@
+require_relative 'serviceable'
+
 class OpenWeatherService
   include Serviceable
 
-  def self.get_forecast_information(latitude, longitude)
+  def get_forecast_information(latitude, longitude)
     uri    = '/data/2.5/onecall'
 
     params = {

@@ -6,12 +6,17 @@ class ClimbingRoute
     @type              = route_info[:type]
     @rating            = route_info[:rating]
     @location          = route_info[:location]
-    @distance_to_route = distance_between(route_info[:latitude], route_info[:longitude], search_coords)
+    @latitude          = route_info[:latitude]
+    @longitude         = route_info[:longitude]
+    @distance_to_route = distance_between(route_coords, search_coords)
   end
 
-  def distance_between(route_lat, route_long, search_coords)
-    route_coords = "#{route_lat},#{route_long}"
-    result = MapQuestService.get_distance_between(route_coords, search_coords)
+  def distance_between(route_coords, search_coords)
+    result = MapQuestService.new.get_distance_between(route_coords, search_coords)
     result[:route][:distance]
+  end
+
+  def route_coords
+    "#{@latitude},#{@longitude}"
   end
 end
