@@ -8,12 +8,12 @@ RSpec.describe 'Background Image API' do
       expect(response).to be_successful
       expect(response.content_type).to eq('application/json')
 
-      payload = JSON.parse(response.body, symbolize_names: true)
+      parsed = JSON.parse(response.body, symbolize_names: true)
 
-      expect(payload).to be_a(Hash)
-      expect(payload).to have_key(:data)
+      expect(parsed).to be_a(Hash)
+      expect(parsed).to have_key(:data)
 
-      image = payload[:data]
+      image = parsed[:data]
 
       expect(image).to have_key(:id)
       expect(image[:id]).to eq(nil)

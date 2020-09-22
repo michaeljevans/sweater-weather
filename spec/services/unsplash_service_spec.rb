@@ -1,7 +1,7 @@
 RSpec.describe UnsplashService do
   it 'returns images based on search' do
     VCR.use_cassette('unsplash_denver', re_record_interval: 7.days) do
-      terms = 'denver'
+      terms = 'denver,co'
 
       images = UnsplashService.images_by_search(terms)
 
