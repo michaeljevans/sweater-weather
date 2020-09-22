@@ -32,4 +32,54 @@ RSpec.describe 'User login API' do
     expect(parsed[:data][:attributes]).to have_key(:api_key)
     expect(parsed[:data][:attributes][:api_key]).to eq(user.api_key)
   end
+
+  it 'returns an error when the email cannot be found' do
+    user = User.create!(email: 'whatever@example.com', password: 'correctpassword')
+
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: 'different@example.com',
+      password: 'correctpassword'
+    }
+
+    post '/api/v1/sessions', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Email does not match any existing records.')
+  end
+
+  it 'does not allow a user to log in with incorrect password' do
+    user = User.create!(email: 'whatever@example.com', password: 'correctpassword')
+
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: 'whatever@example.com',
+      password: 'incorrectpassword'
+    }
+
+    post '/api/v1/sessions', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Request denied. Password does not match.')
+  end
 end
