@@ -6,12 +6,12 @@ RSpec.describe 'Users API' do
     }
 
     params = {
-      email: "whatever@example.com",
-      password: "password",
-      password_confirmation: "password"
+      email: 'whatever@example.com',
+      password: 'password',
+      password_confirmation: 'password'
     }
 
-    post '/api/v1/users', headers: headers, params: JSON.generate(params)
+    post '/api/v1/users', headers: headers, params: params.to_json
 
     expect(response).to be_successful
     expect(response.status).to eq(201)
@@ -28,5 +28,53 @@ RSpec.describe 'Users API' do
     expect(parsed[:data][:attributes][:email]).to eq(params[:email])
     expect(parsed[:data][:attributes]).to have_key(:api_key)
     expect(parsed[:data][:attributes][:api_key]).to be_a(String)
+  end
+
+  it 'does not create a user without an email' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: "",
+      password: "password",
+      password_confirmation: 'password'
+    }
+
+    post '/api/v1/users', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Unable to create user. All fields are required.')
+  end
+
+  it 'does not create a user without an email' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: "whatever@example.com",
+      password: "",
+      password_confirmation: 'password'
+    }
+
+    post '/api/v1/users', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Unable to create user. All fields are required.')
   end
 end
