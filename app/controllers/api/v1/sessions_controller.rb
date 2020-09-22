@@ -8,8 +8,7 @@ class Api::V1::SessionsController < ApplicationController
     elsif !user.authenticate(user_params[:password])
       render json: { error: 'Request denied. Password does not match.' }, status: 401
     else
-      session[:user_id] = user.id
-      render json: UserSerializer.serialize_me_captain(user), status: 201
+      render json: UserSerializer.serialize_me_captain(user), status: 200
     end
   end
 
