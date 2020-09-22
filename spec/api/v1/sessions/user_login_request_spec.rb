@@ -33,6 +33,52 @@ RSpec.describe 'User login API' do
     expect(parsed[:data][:attributes][:api_key]).to eq(user.api_key)
   end
 
+  it 'does not allow email to be blank' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: '',
+      password: 'correctpassword'
+    }
+
+    post '/api/v1/sessions', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Email and password are required fields.')
+  end
+
+  it 'does not allow password to be blank' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: 'whatever@example.com',
+      password: ''
+    }
+
+    post '/api/v1/sessions', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Email and password are required fields.')
+  end
+
   it 'returns an error when the email cannot be found' do
     user = User.create!(email: 'whatever@example.com', password: 'correctpassword')
 
