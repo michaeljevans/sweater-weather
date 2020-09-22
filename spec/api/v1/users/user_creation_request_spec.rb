@@ -45,7 +45,7 @@ RSpec.describe 'Users API' do
     post '/api/v1/users', headers: headers, params: params.to_json
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(403)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json')
 
     parsed = JSON.parse(response.body, symbolize_names: true)
@@ -69,7 +69,7 @@ RSpec.describe 'Users API' do
     post '/api/v1/users', headers: headers, params: params.to_json
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(403)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json')
 
     parsed = JSON.parse(response.body, symbolize_names: true)
@@ -95,7 +95,7 @@ RSpec.describe 'Users API' do
     post '/api/v1/users', headers: headers, params: params.to_json
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(403)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json')
 
     parsed = JSON.parse(response.body, symbolize_names: true)
@@ -119,7 +119,7 @@ RSpec.describe 'Users API' do
     post '/api/v1/users', headers: headers, params: params.to_json
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(403)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json')
 
     parsed = JSON.parse(response.body, symbolize_names: true)
