@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       get '/forecast', to: 'forecast#show'
 
       get '/backgrounds', to: 'background_image#index'
+
+      post '/users', to: 'users#create'
     end
   end
 end
