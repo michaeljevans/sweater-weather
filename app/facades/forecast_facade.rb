@@ -4,7 +4,7 @@ class ForecastFacade
   def initialize(location)
     @location        = location_info(location)
     @daily_weather   = weather_next_8_days
-    @hourly_weather  = weather_next_24_hours
+    @hourly_weather  = weather_next_12_hours
     @current_weather = CurrentWeather.new(forecast)
   end
 
@@ -19,7 +19,7 @@ class ForecastFacade
     Location.new(response[:results].first[:locations].first)
   end
 
-  def weather_next_24_hours
+  def weather_next_12_hours
     forecast[:hourly].first(12).map { |info| HourlyWeather.new(info) }
   end
 
