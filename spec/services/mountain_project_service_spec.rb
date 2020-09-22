@@ -1,6 +1,6 @@
 RSpec.describe MountainProjectService do
   it 'returns climbing routes' do
-    VCR.use_cassette('mountain_project_golden_co', re_record_interval: 7.days) do
+    VCR.use_cassette('climbing_routes_golden_co', re_record_interval: 7.days) do
       latitude = 39.749672
       longitude = -105.216019
 
