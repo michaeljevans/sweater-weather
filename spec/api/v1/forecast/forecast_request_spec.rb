@@ -8,9 +8,18 @@ RSpec.describe 'Forecast API' do
       expect(response).to be_successful
       expect(response.content_type).to eq('application/json')
 
-      forecast = JSON.parse(response.body, symbolize_names: true)[:data]
+      payload = JSON.parse(response.body, symbolize_names: true)
 
-      expect(forecast[:forecast].class).to eq(Hash)
+      expect(payload.class).to eq(Hash)
+      expect(payload).to have_key(:data)
+
+      forecast = payload[:data]
+
+      expect(forecast).to have_key(:id)
+      expect(forecast[:id]).to eq(nil)
+      expect(forecast).to have_key(:type)
+      expect(forecast[:type]).to eq('forecast')
+
       expect(forecast[:forecast]).to have_key(:location)
       expect(forecast[:forecast][:location]).to have_key(:city)
       expect(forecast[:forecast][:location][:city]).to be_a(String)
