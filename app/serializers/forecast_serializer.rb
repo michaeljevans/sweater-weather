@@ -2,8 +2,8 @@ class ForecastSerializer
   def self.serialize_me_captain(forecast)
     {
       data: {
-        id: nil,
         type: 'forecast',
+        id: nil,
         attributes: {
           location: forecast.location.as_json,
           weather: {
