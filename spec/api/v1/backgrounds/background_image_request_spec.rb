@@ -1,9 +1,14 @@
 RSpec.describe 'Background Image API' do
   it 'returns a background image based on search terms' do
     VCR.use_cassette('unsplash_denver', re_record_interval: 7.days) do
+      headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+
       location = 'denver,co'
 
-      get "/api/v1/backgrounds?location=#{location}"
+      get "/api/v1/backgrounds?location=#{location}", headers: headers
 
       expect(response).to be_successful
       expect(response.content_type).to eq('application/json')

@@ -1,9 +1,14 @@
 RSpec.describe 'Forecast API' do
   it 'returns current, hourly, and daily weather info for a given city' do
     VCR.use_cassette('forecast_denver_co', re_record_interval: 7.days) do
+      headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+
       location = 'denver,co'
 
-      get "/api/v1/forecast?location=#{location}"
+      get "/api/v1/forecast?location=#{location}", headers: headers
 
       expect(response).to be_successful
       expect(response.content_type).to eq('application/json')
