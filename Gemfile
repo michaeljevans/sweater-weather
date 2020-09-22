@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
+gem 'bcrypt'
 gem 'figaro'
 gem 'faraday'
 gem 'fast_jsonapi'
