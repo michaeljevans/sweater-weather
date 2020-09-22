@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def create
     if any_empty_params?
-      render json: { error: 'Unable to create user. All fields are required.'}, status: 400
+      render json: { error: 'Unable to create user. Email, password, and password confirmation are required fields.' }, status: 400
     elsif user_already_exists?(user_params[:email])
       render json: { error: 'Unable to create user. A user with that email already exists.' }, status: 400
     elsif passwords_dont_match?(user_params[:password], user_params[:password_confirmation])
@@ -20,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
 
   def any_empty_params?
     input = [user_params[:email], user_params[:password], user_params[:password_confirmation]]
-    input.any? { |param| param.empty? }
+    input.any? { |param| param.nil? || param.empty? }
   end
 
   def user_already_exists?(email)

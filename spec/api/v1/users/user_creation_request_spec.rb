@@ -51,7 +51,7 @@ RSpec.describe 'Users API' do
     parsed = JSON.parse(response.body, symbolize_names: true)
 
     expect(parsed).to have_key(:error)
-    expect(parsed[:error]).to eq('Unable to create user. All fields are required.')
+    expect(parsed[:error]).to eq('Unable to create user. Email, password, and password confirmation are required fields.')
   end
 
   it 'does not create a user without a password' do
@@ -75,7 +75,7 @@ RSpec.describe 'Users API' do
     parsed = JSON.parse(response.body, symbolize_names: true)
 
     expect(parsed).to have_key(:error)
-    expect(parsed[:error]).to eq('Unable to create user. All fields are required.')
+    expect(parsed[:error]).to eq('Unable to create user. Email, password, and password confirmation are required fields.')
   end
 
   it 'does not create a user when email already exists' do
@@ -126,5 +126,74 @@ RSpec.describe 'Users API' do
 
     expect(parsed).to have_key(:error)
     expect(parsed[:error]).to eq('Unable to create user. Passwords do not match.')
+  end
+
+  it 'can handle a nil value for email' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      password: 'password',
+      password_confirmation: 'password'
+    }
+
+    post '/api/v1/users', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Unable to create user. Email, password, and password confirmation are required fields.')
+  end
+
+  it 'can handle a nil value for password' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: 'whatever@example.com',
+      password_confirmation: 'password'
+    }
+
+    post '/api/v1/users', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Unable to create user. Email, password, and password confirmation are required fields.')
+  end
+
+  it 'can handle a nil value for password confirmation' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: 'whatever@example.com',
+      password: 'password'
+    }
+
+    post '/api/v1/users', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Unable to create user. Email, password, and password confirmation are required fields.')
   end
 end
