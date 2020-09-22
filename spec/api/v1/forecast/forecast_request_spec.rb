@@ -20,6 +20,7 @@ RSpec.describe 'Forecast API' do
       expect(forecast).to have_key(:type)
       expect(forecast[:type]).to eq('forecast')
 
+      expect(forecast).to have_key(:forecast)
       expect(forecast[:forecast]).to have_key(:location)
       expect(forecast[:forecast][:location]).to have_key(:city)
       expect(forecast[:forecast][:location][:city]).to be_a(String)
