@@ -4,7 +4,7 @@ class ImageSerializer
       data: {
         id: nil,
         type: 'image',
-        image: {
+        attributes: {
           location: image.location,
           image_url: image.image_url,
           credit: image.credit.as_json

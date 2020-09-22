@@ -20,21 +20,21 @@ RSpec.describe 'Background Image API' do
       expect(image).to have_key(:type)
       expect(image[:type]).to eq('image')
 
-      expect(image).to have_key(:image)
-      expect(image[:image]).to have_key(:location)
-      expect(image[:image][:location]).to be_a(String)
-      expect(image[:image][:location]).to eq('denver,co')
+      expect(image).to have_key(:attributes)
+      expect(image[:attributes]).to have_key(:location)
+      expect(image[:attributes][:location]).to be_a(String)
+      expect(image[:attributes][:location]).to eq('denver,co')
 
-      expect(image[:image]).to have_key(:image_url)
-      expect(image[:image][:image_url]).to be_a(String)
+      expect(image[:attributes]).to have_key(:image_url)
+      expect(image[:attributes][:image_url]).to be_a(String)
 
-      expect(image[:image]).to have_key(:credit)
-      expect(image[:image][:credit]).to have_key(:source)
-      expect(image[:image][:credit][:source]).to eq('unsplash.com')
-      expect(image[:image][:credit]).to have_key(:artist)
-      expect(image[:image][:credit][:artist]).to be_a(String)
-      expect(image[:image][:credit]).to have_key(:logo)
-      expect(image[:image][:credit][:logo]).to eq('https://unsplash-assets.imgix.net/marketing/press-logotype-stacked.svg?auto=format&fit=crop&q=60')
+      expect(image[:attributes]).to have_key(:credit)
+      expect(image[:attributes][:credit]).to have_key(:source)
+      expect(image[:attributes][:credit][:source]).to eq('unsplash.com')
+      expect(image[:attributes][:credit]).to have_key(:artist)
+      expect(image[:attributes][:credit][:artist]).to be_a(String)
+      expect(image[:attributes][:credit]).to have_key(:logo)
+      expect(image[:attributes][:credit][:logo]).to eq('https://unsplash-assets.imgix.net/marketing/press-logotype-stacked.svg?auto=format&fit=crop&q=60')
     end
   end
 end

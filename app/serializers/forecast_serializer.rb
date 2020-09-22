@@ -4,7 +4,7 @@ class ForecastSerializer
       data: {
         id: nil,
         type: 'forecast',
-        forecast: {
+        attributes: {
           location: forecast.location.as_json,
           weather: {
             current: forecast.current_weather.as_json,
