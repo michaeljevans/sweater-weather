@@ -15,7 +15,7 @@ RSpec.describe 'User login API' do
     post '/api/v1/sessions', headers: headers, params: params.to_json
 
     expect(response).to be_successful
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(response.content_type).to eq('application/json')
 
     parsed = JSON.parse(response.body, symbolize_names: true)
