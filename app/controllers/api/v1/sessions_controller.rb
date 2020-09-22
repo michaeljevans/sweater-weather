@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       render json: { error: 'Email does not match any existing records.' }, status: 404
     elsif !user.authenticate(user_params[:password])
       render json: { error: 'Request denied. Password does not match.' }, status: 401
-    else
+    else user.authenticate(user_params[:password])
       render json: UserSerializer.serialize_me_captain(user), status: 200
     end
   end
@@ -20,6 +20,6 @@ class Api::V1::SessionsController < ApplicationController
 
   def any_empty_params?
     input = [user_params[:email], user_params[:password]]
-    input.any? { |param| param.empty? }
+    input.any? { |param| param.nil? || param.empty? }
   end
 end

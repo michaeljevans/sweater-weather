@@ -128,4 +128,52 @@ RSpec.describe 'User login API' do
     expect(parsed).to have_key(:error)
     expect(parsed[:error]).to eq('Request denied. Password does not match.')
   end
+
+  it 'can handle a nil value for email' do
+    user = User.create!(email: 'whatever@example.com', password: 'correctpassword')
+
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      password: 'incorrectpassword'
+    }
+
+    post '/api/v1/sessions', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Email and password are required fields.')
+  end
+
+  it 'can handle a nil value for password' do
+    user = User.create!(email: 'whatever@example.com', password: 'correctpassword')
+
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    params = {
+      email: 'whatever@example.com'
+    }
+
+    post '/api/v1/sessions', headers: headers, params: params.to_json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Email and password are required fields.')
+  end
 end
