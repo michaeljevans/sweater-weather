@@ -107,4 +107,42 @@ RSpec.describe 'Forecast API' do
       expect(forecast[:attributes][:weather][:daily].first).to_not have_key(:uvi)
     end
   end
+
+  it 'cannot return a forecast without a location' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    get "/api/v1/forecast", headers: headers
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Forecast cannot be retrieved without a location.')
+  end
+
+  it 'cannot return a forecast with an empty location' do
+    headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+
+    location = ''
+
+    get "/api/v1/forecast?location=#{location}", headers: headers
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json')
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Forecast cannot be retrieved without a location.')
+  end
 end
