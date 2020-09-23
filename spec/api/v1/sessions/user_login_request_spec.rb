@@ -23,7 +23,7 @@ RSpec.describe 'User login API' do
     expect(parsed).to be_a(Hash)
     expect(parsed).to have_key(:data)
     expect(parsed[:data]).to have_key(:type)
-    expect(parsed[:data][:type]).to eq('users')
+    expect(parsed[:data][:type]).to eq('user')
     expect(parsed[:data]).to have_key(:id)
     expect(parsed[:data][:id]).to eq(user.id)
     expect(parsed[:data]).to have_key(:attributes)

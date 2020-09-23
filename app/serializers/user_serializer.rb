@@ -2,7 +2,7 @@ class UserSerializer
   def self.serialize_me_captain(user)
     {
       data: {
-        type: 'users',
+        type: 'user',
         id: user.id,
         attributes: {
           email: user.email,

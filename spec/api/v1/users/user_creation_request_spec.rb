@@ -22,7 +22,7 @@ RSpec.describe 'Users API' do
     expect(parsed).to have_key(:data)
     expect(parsed[:data]).to have_key(:id)
     expect(parsed[:data]).to have_key(:type)
-    expect(parsed[:data][:type]).to eq('users')
+    expect(parsed[:data][:type]).to eq('user')
     expect(parsed[:data]).to have_key(:attributes)
     expect(parsed[:data][:attributes]).to have_key(:email)
     expect(parsed[:data][:attributes][:email]).to eq(params[:email])
