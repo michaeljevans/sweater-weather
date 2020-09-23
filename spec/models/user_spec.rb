@@ -6,6 +6,10 @@ RSpec.describe User do
     it { should validate_uniqueness_of :api_key }
   end
 
+  describe 'relationships' do
+    it { should have_many :road_trips }
+  end
+
   describe 'class methods' do
     it '.generate_api_key' do
       user_info = { email: 'whatever@example.com', password: 'password' }

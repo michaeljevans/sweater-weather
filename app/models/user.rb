@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :api_key, uniqueness: true
 
+  has_many :road_trips
+
   private
 
   def generate_api_key
