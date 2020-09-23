@@ -3,7 +3,7 @@ class Api::V1::ForecastController < ApplicationController
     if no_location?
       render json: { error: 'Forecast cannot be retrieved without a location.' }, status: 400
     else
-      forecast = ForecastFacade.new(params[:location])
+      forecast = ForecastFacade.new(forecast_params[:location])
       render json: ForecastSerializer.serialize_me_captain(forecast)
     end
   end
@@ -15,6 +15,6 @@ class Api::V1::ForecastController < ApplicationController
   end
 
   def no_location?
-    forecast_params[:location].nil? || forecast_params[:location].empty?
+    params[:location].nil? || params[:location].empty?
   end
 end

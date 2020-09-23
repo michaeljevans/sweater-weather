@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def any_empty_params?
-    input = [user_params[:email], user_params[:password], user_params[:password_confirmation]]
+    input = [ params[:email], params[:password], params[:password_confirmation] ]
     input.any? { |param| param.nil? || param.empty? }
   end
 
