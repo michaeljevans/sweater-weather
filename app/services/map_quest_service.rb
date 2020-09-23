@@ -16,14 +16,14 @@ class MapQuestService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def self.get_travel_time(start, end)
+  def self.get_travel_time(origin, destination)
     domain = 'http://www.mapquestapi.com'
     uri    = '/directions/v2/route'
 
     params = {
       key: ENV['MAPQUEST_API_KEY'],
-      from: start,
-      to: end
+      from: origin,
+      to: destination
     }
 
     response = Faraday.get("#{domain}#{uri}") do |req|
