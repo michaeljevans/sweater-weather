@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.unsplash.com/search/photos?client_id=a9SizvvZcvqNXoSYCp_h_gH_9258e0RE4Fw2e67QrrE&query=denver,co,landmark
+    uri: https://api.unsplash.com/search/photos?client_id=<UNSPLASH_ACCESS_KEY>&query=denver,co,landmark
     body:
       encoding: US-ASCII
       string: ''
@@ -39,8 +39,8 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store, must-revalidate
       Link:
-      - <https://api.unsplash.com/search/photos?client_id=a9SizvvZcvqNXoSYCp_h_gH_9258e0RE4Fw2e67QrrE&page=416&query=denver%2Cco%2Clandmark>;
-        rel="last", <https://api.unsplash.com/search/photos?client_id=a9SizvvZcvqNXoSYCp_h_gH_9258e0RE4Fw2e67QrrE&page=2&query=denver%2Cco%2Clandmark>;
+      - <https://api.unsplash.com/search/photos?client_id=<UNSPLASH_ACCESS_KEY>&page=416&query=denver%2Cco%2Clandmark>;
+        rel="last", <https://api.unsplash.com/search/photos?client_id=<UNSPLASH_ACCESS_KEY>&page=2&query=denver%2Cco%2Clandmark>;
         rel="next"
       X-Total:
       - '4152'
@@ -65,17 +65,17 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 23 Sep 2020 06:21:39 GMT
+      - Wed, 23 Sep 2020 21:39:47 GMT
       Age:
-      - '0'
+      - '55088'
       X-Served-By:
-      - cache-dca17774-DCA, cache-den19642-DEN
+      - cache-dca17774-DCA, cache-den19624-DEN
       X-Cache:
-      - MISS, MISS
+      - MISS, HIT
       X-Cache-Hits:
-      - 0, 0
+      - 0, 1
       X-Timer:
-      - S1600842100.694236,VS0,VE177
+      - S1600897188.971560,VS0,VE1
       Vary:
       - Accept-Encoding, Origin, Authorization, client-geo-region, client-geo-region
     body:
@@ -214,5 +214,5 @@ http_interactions:
         Appiah","first_name":"Emmanu\u00e9l","last_name":"Appiah","twitter_username":"exappiah","portfolio_url":"http://luninuxos.com/~exappiah","bio":"True
         Cowboy of the North","location":"North","links":{"self":"https://api.unsplash.com/users/exappiah","html":"https://unsplash.com/@exappiah","photos":"https://api.unsplash.com/users/exappiah/photos","likes":"https://api.unsplash.com/users/exappiah/likes","portfolio":"https://api.unsplash.com/users/exappiah/portfolio","following":"https://api.unsplash.com/users/exappiah/following","followers":"https://api.unsplash.com/users/exappiah/followers"},"profile_image":{"small":"https://images.unsplash.com/profile-1549506752925-d64d8c5981ee?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=32&w=32","medium":"https://images.unsplash.com/profile-1549506752925-d64d8c5981ee?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=64&w=64","large":"https://images.unsplash.com/profile-1549506752925-d64d8c5981ee?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"},"instagram_username":"exappiah","total_collections":0,"total_likes":119,"total_photos":303,"accepted_tos":true},"tags":[{"type":"search","title":"building"},{"type":"search","title":"clock
         tower"},{"type":"search","title":"architecture"}]}]}'
-  recorded_at: Wed, 23 Sep 2020 06:21:39 GMT
+  recorded_at: Wed, 23 Sep 2020 21:39:47 GMT
 recorded_with: VCR 6.0.0
