@@ -12,7 +12,7 @@ The Sweater Weather API makes planning road trips a breeze! Users can request th
 
 * [MapQuest](https://developer.mapquest.com/documentation/)
 * [OpenWeather](https://openweathermap.org/api)
-* [Unsplash][https://unsplash.com/developers]
+* [Unsplash](https://unsplash.com/developers)
 
 ---
 ## Use
