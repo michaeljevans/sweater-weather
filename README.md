@@ -107,7 +107,7 @@ Example JSON response:
 ```
 ---
 ### Background Image
-**GET** `/api/v1/background`
+**GET** `/api/v1/backgrounds`
 
 `location` **required**
 
