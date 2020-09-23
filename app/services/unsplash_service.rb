@@ -5,7 +5,7 @@ class UnsplashService
 
     params = {
       client_id: ENV['UNSPLASH_ACCESS_KEY'],
-      query: "#{terms.delete(' ')},main,street"
+      query: "#{terms.delete(' ')},landmark"
     }
 
     response = Faraday.get("#{domain}#{uri}") do |req|

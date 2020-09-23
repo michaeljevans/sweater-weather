@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_secure_password
   before_create :generate_api_key
 
   validates :email, presence: true, uniqueness: true
@@ -7,6 +6,8 @@ class User < ApplicationRecord
   validates :api_key, uniqueness: true
 
   has_many :road_trips
+
+  has_secure_password
 
   private
 
