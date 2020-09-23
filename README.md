@@ -3,9 +3,16 @@
 The Sweater Weather API makes planning road trips a breeze! Users can request the forecast for a location, request images related to a location, and create road trips.
 
 ## Setup
-* Clone the repo to your local machine
+* Clone this repo
 * `$ bundle install`
 * `$ rake db:{create,migrate}`
+* `$ bundle exec figaro install` will create a git-ignored `config/application.yml` where you will need to place your API keys for the environment
+
+**Please sign up for the following APIs to get necessary credentials**
+
+* [MapQuest](https://developer.mapquest.com/documentation/)
+* [OpenWeather](https://openweathermap.org/api)
+* [Unsplash][https://unsplash.com/developers]
 
 ---
 ## Use
