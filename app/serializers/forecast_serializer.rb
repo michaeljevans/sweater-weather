@@ -5,11 +5,11 @@ class ForecastSerializer
         type: 'forecast',
         id: nil,
         attributes: {
-          location: forecast.location.as_json,
+          location: forecast.location,
           weather: {
-            current: forecast.current_weather.as_json,
-            hourly: forecast.hourly_weather.map { |hour| hour.as_json },
-            daily: forecast.daily_weather.map { |day| day.as_json }
+            current: forecast.current_weather,
+            hourly: forecast.hourly_weather.map { |hour| hour },
+            daily: forecast.daily_weather.map { |day| day }
           }
         }
       }
