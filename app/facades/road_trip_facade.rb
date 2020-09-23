@@ -1,10 +1,10 @@
 class RoadTripFacade
   attr_reader :id, :origin, :destination, :travel_time, :arrival_forecast
 
-  def initialize(id, road_trip_info)
-    @id               = id
-    @origin           = road_trip_info[:origin]
-    @destination      = road_trip_info[:destination]
+  def initialize(road_trip)
+    @id               = road_trip.id
+    @origin           = road_trip.origin
+    @destination      = road_trip.destination
     @travel_time      = time_to_destination
     @arrival_forecast = weather_at_destination
   end
