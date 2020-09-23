@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
+gem 'bcrypt'
 gem 'figaro'
 gem 'faraday'
 gem 'fast_jsonapi'
@@ -23,8 +24,10 @@ end
 group :test do
   gem 'vcr'
   gem 'webmock'
+  gem 'capybara'
   gem 'simplecov'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
