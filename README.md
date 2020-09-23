@@ -29,6 +29,8 @@ The Sweater Weather API makes planning road trips a breeze! Users can request th
 
 `location` **required**
 
+Example input: `location=denver,co`
+
 **Notes:**
 
 * temperatures are given in Kelvin
@@ -111,6 +113,8 @@ Example JSON response:
 
 `location` **required**
 
+Example input: `location=denver,co`
+
 Example JSON response:
 ```Ruby
 {
@@ -179,7 +183,11 @@ Example JSON response:
 
 `origin` **required**
 
+Example input: `origin=denver,co`
+
 `destination` **required**
+
+Example input: `destination=vegas,nv`
 
 `api_key` **required**
 
