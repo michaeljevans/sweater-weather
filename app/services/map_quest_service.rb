@@ -22,8 +22,8 @@ class MapQuestService
 
     params = {
       key: ENV['MAPQUEST_API_KEY'],
-      from: origin,
-      to: destination
+      from: origin.delete(' '),
+      to: destination.delete(' ')
     }
 
     response = Faraday.get("#{domain}#{uri}") do |req|
