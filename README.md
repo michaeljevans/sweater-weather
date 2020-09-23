@@ -8,7 +8,7 @@ The Sweater Weather API makes planning road trips a breeze! Users can request th
 * `$ rake db:{create,migrate}`
 * `$ bundle exec figaro install` will create a git-ignored `config/application.yml` where you will need to place your API keys for the environment
 
-**Please sign up for the following APIs to get necessary credentials**
+**Please sign up for the following APIs to obtain the necessary credentials:**
 
 * [MapQuest](https://developer.mapquest.com/documentation/)
 * [OpenWeather](https://openweathermap.org/api)
