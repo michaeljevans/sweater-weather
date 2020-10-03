@@ -1,4 +1,4 @@
-# Sweater Weather API
+# Sweater Weather API [![michaeljevans](https://circleci.com/gh/michaeljevans/sweater-weather/tree/circleci-project-setup.svg?style=svg)](https://circleci.com/gh/michaeljevans/sweater-weather/tree/circleci-project-setup)
 
 The Sweater Weather API makes planning road trips a breeze! Users can request the forecast for a location, request images related to a location, and create road trips.
 
