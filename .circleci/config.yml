@@ -13,5 +13,5 @@ jobs:
           first: Install bundler
           command: gem install bundler:2.1.4
           name: Which bundler?
-          command: bundle -v
+          check: bundle -v
       - ruby/bundle-install
